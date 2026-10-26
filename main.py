@@ -273,24 +273,25 @@ class StudioApi:
 
 def print_cli_banner():
     banner = r"""
- _   _                       ____  _             _ _       
-| \ | |_ __ ___   __ _ _ __ / ___|| |_ _   _  __| (_) ___  
-|  \| | '_ ` _ \ / _` | '_ \\___ \| __| | | |/ _` | |/ _ \ 
-| |\  | | | | | | (_| | |_) |___) | |_| |_| | (_| | | (_) |
-|_| \_|_| |_| |_|\__,_| .__/|____/ \__|\__,_|\__,_|_|\___/ 
-                      |_| Next-Gen Reconnaissance Suite (v1.0.0)
+ ___        __             __  __                            
+|_ _|_ __  / _|_ __ __ _  |  \/  | __ _ _ __  _ __   ___ _ __ 
+ | || '_ \| |_| '__/ _` | | |\/| |/ _` | '_ \| '_ \ / _ \ '__|
+ | || | | |  _| | | (_| | | |  | | (_| | |_) | |_) |  __/ |   
+|___|_| |_|_| |_|  \__,_| |_|  |_|\__,_| .__/| .__/ \___|_|   
+                                       |_|   |_|   v1.0.0
+       Next-Gen Infrastructure Reconnaissance & Network Mapping Suite
     """
     print(banner)
 
 def parse_args():
     import argparse
     parser = argparse.ArgumentParser(
-        prog="nmap-studio",
-        description="Nmap Studio — High-performance desktop reconnaissance suite combining Nmap, RustScan-speed async port discovery, Angry IP subnet sweeps, and an interactive 600+ NSE script browser.",
+        prog="infra-mapper",
+        description="Infra-Mapper — High-performance desktop reconnaissance suite combining Nmap, RustScan-speed async port discovery, Angry IP subnet sweeps, and an interactive 600+ NSE script browser.",
         epilog="Examples:\n  python main.py              # Launch the GUI Workspace\n  python main.py --check-env  # Validate local Nmap, Npcap & permissions\n  python main.py --version    # Print version info\n",
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    parser.add_argument("-v", "--version", action="version", version="Nmap Studio v1.0.0")
+    parser.add_argument("-v", "--version", action="version", version="Infra-Mapper v1.0.0")
     parser.add_argument("--check-env", action="store_true", help="Diagnose local environment (Nmap binary, Npcap drivers, and privilege level)")
     parser.add_argument("--debug", action="store_true", help="Launch with Webview inspection DevTools enabled")
     parser.add_argument("--target", type=str, default="", help="Optional pre-filled target IP or CIDR on launch")
@@ -322,7 +323,7 @@ def check_environment():
     nse_mgr = NSEManager(nmap_bin)
     scripts = nse_mgr.load_scripts()
     print(f"  • NSE Script DB      : {len(scripts)} scripts indexed")
-    print("\n[+] System is ready to launch Nmap Studio!\n")
+    print("\n[+] System is ready to launch Infra-Mapper!\n")
 
 def main():
     args = parse_args()
@@ -336,7 +337,7 @@ def main():
     index_path = os.path.join(web_dir, "index.html")
 
     window = webview.create_window(
-        title="NMAP STUDIO - All-in-One Pentest Recon Suite",
+        title="Infra-Mapper - All-in-One Infrastructure Recon Suite",
         url=index_path,
         js_api=api,
         width=1200,

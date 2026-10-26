@@ -1,6 +1,6 @@
-# Contributing to Nmap Studio
+# Contributing to Infra-Mapper
 
-Thank you for your interest in contributing to **Nmap Studio**! We welcome contributions from developers, security researchers, penetration testers, and network engineers.
+Thank you for your interest in contributing to **Infra-Mapper**! We welcome contributions from developers, security researchers, penetration testers, and network engineers.
 
 ---
 
@@ -14,8 +14,8 @@ Please be respectful, constructive, and adhere to standard open-source community
 
 1. **Fork and Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/nmap-studio.git
-   cd nmap-studio
+   git clone https://github.com/B-for-Opensource/Infra-Mapper.git
+   cd Infra-Mapper
    ```
 
 2. **Set up a Virtual Environment**:
@@ -50,7 +50,7 @@ Please be respectful, constructive, and adhere to standard open-source community
    Never perform synchronous disk I/O, heavy subprocess calls, or `psutil` blocking waits inside the main UI thread. Use background worker threads and asynchronous streams.
 
 2. **Transparent CLI**:
-   Nmap Studio is a transparent wrapper. New scanning flags or presets must always generate and expose the exact CLI command to the user.
+   Infra-Mapper is a transparent wrapper. New scanning flags or presets must always generate and expose the exact CLI command to the user.
 
 3. **Cross-Platform Compatibility**:
    Ensure any OS-specific logic (paths, drivers, elevation) is abstracted within `platform_adapters/` (`windows.py`, `posix.py`).

@@ -42,6 +42,6 @@ class WindowsAdapter(BasePlatformAdapter):
 
     def get_config_dir(self) -> str:
         app_data = os.environ.get("APPDATA", os.path.expanduser("~"))
-        config_path = os.path.join(app_data, "NmapStudio")
+        config_path = os.path.join(app_data, "InfraMapper")
         os.makedirs(config_path, exist_ok=True)
         return config_path

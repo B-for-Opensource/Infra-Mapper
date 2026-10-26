@@ -1,7 +1,7 @@
 <p align="center">
-  <h1 align="center">⚡ NMAP STUDIO</h1>
+  <h1 align="center">⚡ INFRA-MAPPER</h1>
   <p align="center">
-    <strong>The Next-Generation Desktop Reconnaissance Suite for Penetration Testers & Security Engineers</strong>
+    <strong>The Next-Generation Desktop Infrastructure Reconnaissance Suite for Penetration Testers & Security Engineers</strong>
   </p>
   <p align="center">
     <a href="#-key-features">Features</a> •
@@ -24,7 +24,7 @@
 
 ## 💡 Overview
 
-**Nmap Studio** is a high-performance, modern graphical workspace designed to replace legacy, unmaintained tools like Zenmap. It bridges the precision and authority of official **Nmap** with the ultra-fast speeds of **RustScan** and the rapid subnet sweeps of **Angry IP Scanner** — all bundled into a single, cohesive, dark-themed desktop application.
+**Infra-Mapper** is a high-performance, modern graphical workspace designed to replace legacy, unmaintained tools like Zenmap. It bridges the precision and authority of official **Nmap** with the ultra-fast speeds of **RustScan** and the rapid subnet sweeps of **Angry IP Scanner** — all bundled into a single, cohesive, dark-themed desktop application.
 
 > **Zero Extra Clones Required:** Everything runs seamlessly through native Python asynchronous engines and stock Nmap CLI calls.
 
@@ -96,7 +96,7 @@ python main.py
 
 ## 💻 CLI Usage
 
-Nmap Studio features a built-in diagnostic and launch CLI:
+Infra-Mapper features a built-in diagnostic and launch CLI:
 
 ```bash
 # Display help and usage manual
@@ -115,12 +115,13 @@ python main.py --debug
 ### CLI Output Example (`--check-env`)
 
 ```text
- _   _                       ____  _             _ _       
-| \ | |_ __ ___   __ _ _ __ / ___|| |_ _   _  __| (_) ___  
-|  \| | '_ ` _ \ / _` | '_ \\___ \| __| | | |/ _` | |/ _ \ 
-| |\  | | | | | | (_| | |_) |___) | |_| |_| | (_| | | (_) |
-|_| \_|_| |_| |_|\__,_| .__/|____/ \__|\__,_|\__,_|_|\___/ 
-                      |_| Next-Gen Reconnaissance Suite (v1.0.0)
+ ___        __             __  __                            
+|_ _|_ __  / _|_ __ __ _  |  \/  | __ _ _ __  _ __   ___ _ __ 
+ | || '_ \| |_| '__/ _` | | |\/| |/ _` | '_ \| '_ \ / _ \ '__|
+ | || | | |  _| | | (_| | | |  | | (_| | |_) | |_) |  __/ |   
+|___|_| |_|_| |_|  \__,_| |_|  |_|\__,_| .__/| .__/ \___|_|   
+                                       |_|   |_|   v1.0.0
+       Next-Gen Infrastructure Reconnaissance & Network Mapping Suite
 
 [*] Environment Diagnostic Check:
   • Operating System   : WINDOWS (win32)
@@ -130,7 +131,7 @@ python main.py --debug
   • Nmap Version       : Nmap version 7.99 ( https://nmap.org )
   • NSE Script DB      : 612 scripts indexed
 
-[+] System is ready to launch Nmap Studio!
+[+] System is ready to launch Infra-Mapper!
 ```
 
 ---

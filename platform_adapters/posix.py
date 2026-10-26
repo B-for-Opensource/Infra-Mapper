@@ -64,6 +64,6 @@ class MacOSAdapter(BasePlatformAdapter):
         }
 
     def get_config_dir(self) -> str:
-        base = os.path.expanduser("~/Library/Application Support/NmapStudio")
+        base = os.path.expanduser("~/Library/Application Support/InfraMapper")
         os.makedirs(base, exist_ok=True)
         return base

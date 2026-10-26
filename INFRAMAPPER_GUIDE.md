@@ -1,6 +1,7 @@
-# InfraMapper & Nmap Studio User Guide & Documentation
+# Infra-Mapper User Guide & Documentation
 
 Version: 1.0  
+Repository: https://github.com/B-for-Opensource/Infra-Mapper  
 Classification: Public / Technical Manual  
 
 ---
@@ -8,10 +9,10 @@ Classification: Public / Technical Manual
 ## 1. Introduction
 
 ### 1.1 Purpose of This Document
-This guide explains how to install, configure, and use **InfraMapper** (integrated inside **Nmap Studio**), an infrastructure-based network discovery and asset mapping suite. It is designed for network administrators, security engineers, and IT operations teams.
+This guide explains how to install, configure, and use **Infra-Mapper**, an infrastructure-based network discovery and asset mapping suite. It is designed for network administrators, security engineers, and IT operations teams.
 
-### 1.2 What is InfraMapper?
-**InfraMapper** is an infrastructure-based scanner that discovers live hosts, open ports, running services, and operating systems across IP ranges and subnets. It maps your network infrastructure and produces an asset inventory — focused on **infrastructure mapping and asset visibility** rather than application-layer fuzzing.
+### 1.2 What is Infra-Mapper?
+**Infra-Mapper** is an infrastructure-based scanner that discovers live hosts, open ports, running services, and operating systems across IP ranges and subnets. It maps your network infrastructure and produces an asset inventory — focused on **infrastructure mapping and asset visibility** rather than application-layer fuzzing.
 
 > **Category:** Infrastructure / Network & Asset Discovery Scanner (NOT an application scanner).
 

@@ -19,7 +19,7 @@ def generate_inframapper_docx(output_path: str):
 
     p_title = doc.add_paragraph()
     p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r_title = p_title.add_run("InfraMapper\n& Nmap Studio")
+    r_title = p_title.add_run("Infra-Mapper")
     r_title.font.name = "Arial"
     r_title.font.size = Pt(36)
     r_title.font.bold = True
@@ -100,16 +100,16 @@ def generate_inframapper_docx(output_path: str):
     
     doc.add_heading("1.1 Purpose of This Document", level=2)
     doc.add_paragraph(
-        "This guide explains how to install, configure, and use InfraMapper, an infrastructure-based "
-        "network discovery and asset mapping suite integrated into Nmap Studio. It is designed for "
+        "This guide explains how to install, configure, and use Infra-Mapper, an infrastructure-based "
+        "network discovery and asset mapping suite. It is designed for "
         "network administrators, penetration testers, security engineers, and IT operations teams."
     )
 
-    doc.add_heading("1.2 What is InfraMapper?", level=2)
+    doc.add_heading("1.2 What is Infra-Mapper?", level=2)
     doc.add_paragraph(
-        "InfraMapper is an infrastructure-based scanner that discovers live hosts, open ports, running "
+        "Infra-Mapper is an infrastructure-based scanner that discovers live hosts, open ports, running "
         "services, and operating systems across IP ranges and subnets. It maps your network infrastructure "
-        "and produces structured asset inventories. Unlike heavy application-layer fuzzers, InfraMapper "
+        "and produces structured asset inventories. Unlike heavy application-layer fuzzers, Infra-Mapper "
         "focuses on network visibility, attack surface reduction, and asset inventory validation."
     )
 
