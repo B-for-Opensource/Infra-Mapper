@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nmap Studio - Modern Pentest Workspace</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <header class="top-navbar">
+    <div class="brand-section">
+      <div class="brand-badge">NMAP STUDIO</div>
+      <div>
+        <div class="brand-title">Workspace</div>
+        <div class="brand-version" id="version-text">v0.1</div>
+      </div>
+    </div>
+
+    <!-- Central Target Input -->
+    <div class="target-center-wrap">
+      <span class="target-icon">🎯</span>
+      <input 
+        type="text" 
+        id="target-input" 
+        class="target-input" 
+        placeholder="Target Host or Subnet (e.g., 127.0.0.1, scanme.nmap.org, 192.168.1.0/24)" 
+        value="127.0.0.1"
+      >
+    </div>
+
+    <!-- Resource Monitor + Status Badges + Run Action -->
+    <div class="nav-actions">
+      <!-- Lightweight Resource Monitor Pill -->
+      <div class="badge-capsule monitor-pill" id="resource-monitor" title="System Resource Usage">
+        <span class="dot" id="monitor-dot"></span>
+        <span id="cpu-val">CPU: 0%</span>
+        <span style="opacity: 0.3;">|</span>
+        <span id="ram-val">RAM: 0%</span>
+      </div>
+
+      <div class="badge-capsule" id="capsule-platform">
+        <span class="dot"></span>
+        <span id="platform-label">OS</span>
+      </div>
+      <div class="badge-capsule" id="capsule-privilege">
+        <span class="dot" id="priv-indicator"></span>
+        <span id="privilege-label">Privilege</span>
+      </div>
+      <div class="badge-capsule" id="capsule-binary">
+        <span class="dot" id="bin-indicator"></span>
+        <span id="binary-label">Nmap</span>
+      </div>
+      
+      <button id="btn-scan" class="btn-header-run" onclick="startScan()">
+        <span>▶</span> Run Scan
+      </button>
+      <button id="btn-cancel" class="btn-header-cancel" onclick="cancelScan()">
+        <span>⏹</span> Cancel
+      </button>
+    </div>
+  </header>
+
+  <!-- 3-Column Split Workspace -->
+  <div class="workspace">
+    
+    <!-- COLUMN 1: Profiles / Playbooks -->
+    <aside class="col-profiles">
+      <div class="panel-header">
+        <span>Playbooks & Presets</span>
+      </div>
+      <div class="profile-list" id="profile-container">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="col-profiles-footer">
+        <button class="btn-sidebar" onclick="resetToCustom()">+ Clear / Custom Flags</button>
+      </div>
+    </aside>
+
+    <!-- COLUMN 2: Flag Matrix Center (Tabbed Categories & Cards) -->
+    <section class="col-matrix">
+      <!-- Engine Switcher (All-In-One: Nmap, RustScan Turbo, Angry IP Subnet) -->
+      <div class="engine-bar">
+        <button class="engine-btn active" id="engine-btn-nmap" onclick="setEngineMode('nmap')">
+          <span>⚡ Precision Nmap</span>
+        </button>
+        <button class="engine-btn" id="engine-btn-turbo" onclick="setEngineMode('turbo')">
+          <span>🚀 Turbo (RustScan)</span>
+        </button>
+        <button class="engine-btn" id="engine-btn-subnet" onclick="setEngineMode('subnet')">
+          <span>🌐 Subnet (Angry IP)</span>
+        </button>
+      </div>
+
+      <div class="panel-header" id="matrix-header">
+        <span>Flag Matrix</span>
+        <span style="font-size: 10px; color: var(--accent-cyan);" id="active-flags-count">0 flags active</span>
+      </div>
+
+      <!-- Category Tabs (Scan Types, Discovery, Service & OS, Timing & Perf, Output) -->
+      <nav class="category-tabs" id="category-tabs-nav">
+        <!-- Rendered dynamically -->
+      </nav>
+
+      <!-- Active Category Flags Grid (Cards/Pills) -->
+      <div class="flags-grid-container" id="flags-grid-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- COLUMN 3: Command Center & Terminal / Results -->
+    <main class="col-terminal-results">
+      
+      <!-- Permanent Command Preview Bar -->
+      <section class="command-center-bar">
+        <div class="terminal-cmd-display">
+          <span class="prompt-symbol">$</span>
+          <div class="cmd-text" id="cmd-preview">nmap 127.0.0.1</div>
+        </div>
+        <button class="btn-copy-cmd" onclick="copyCommand()">Copy Command</button>
+      </section>
+
+      <!-- Results View Tabs -->
+      <nav class="results-nav">
+        <button class="nav-tab-btn active" id="tab-btn-console" onclick="switchResultTab('console')">Console Output (Live)</button>
+        <button class="nav-tab-btn" id="tab-btn-inventory" onclick="switchResultTab('inventory')">Structured Inventory (XML)</button>
+        <button class="nav-tab-btn" id="tab-btn-nse" onclick="switchResultTab('nse')">
+          <span>📜 NSE Script Browser</span>
+          <span class="nse-badge-count" id="nse-total-badge">600+</span>
+        </button>
+      </nav>
+
+      <!-- Tab Content Area -->
+      <div class="results-body">
+        
+        <!-- Live Monospace Terminal Output -->
+        <div id="view-console" class="view-pane active">
+          <pre class="console-output-box" id="terminal-output">Ready to scan. Select target and profile, then click "Run Scan".</pre>
+        </div>
+
+        <!-- Structured Parsed Host/Port Table -->
+        <div id="view-inventory" class="view-pane">
+          <div class="inventory-container">
+            <div class="metrics-strip">
+              <div class="metric-pill">
+                <div class="metric-val" id="metric-total">0</div>
+                <div class="metric-tag">Hosts Discovered</div>
+              </div>
+              <div class="metric-pill">
+                <div class="metric-val" id="metric-open" style="color: var(--accent-emerald);">0</div>
+                <div class="metric-tag">Open Ports</div>
+              </div>
+              <div class="metric-pill">
+                <div class="metric-val" id="metric-time" style="color: var(--accent-sky); font-size: 14px;">-</div>
+                <div class="metric-tag">Scan Initiated</div>
+              </div>
+            </div>
+
+            <div id="hosts-container">
+              <div style="color: var(--text-muted); font-size: 12.5px; text-align: center; padding: 50px;">
+                No parsed scan data available yet. Run a scan to inspect discovered hosts, ports, and services.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Interactive NSE Script Browser -->
+        <div id="view-nse" class="view-pane">
+          <div class="nse-browser-wrap">
+            <div class="nse-toolbar">
+              <div class="nse-search-box">
+                <span style="font-size: 12px; color: var(--text-muted);">🔍</span>
+                <input type="text" id="nse-search-input" class="nse-search-input" placeholder="Search 600+ NSE scripts (e.g., http-vuln, smb, ssl, auth, default)..." oninput="filterNSEScripts()">
+              </div>
+              <div class="nse-cat-pills" id="nse-cat-pills">
+                <!-- Dynamically generated category chips -->
+              </div>
+            </div>
+            
+            <div class="nse-active-bar">
+              <span id="nse-active-label">No custom scripts selected</span>
+              <button class="btn-clear-nse" onclick="clearSelectedNSEScripts()">Clear NSE Selection</button>
+            </div>
+
+            <div class="nse-grid" id="nse-grid">
+              <!-- Dynamically populated script cards -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

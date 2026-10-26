@@ -1,0 +1,36 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# PyInstaller / Distribution
+build/
+dist/
+*.spec
+*.egg-info/
+.eggs/
+
+# Temporary and Output files
+*.xml
+*.nmap
+*.gnmap
+*.log
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
